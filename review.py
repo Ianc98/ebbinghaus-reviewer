@@ -115,11 +115,20 @@ def update_question(title, new_status):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("用法:")
-        print(" add 标题 状态(star/mid/ok)")
-        print(" review")
-        print(" update 标题 状态")
-        print(" list")
+        print("================= 艾宾浩斯复习助手 =================\n")
+        print("用法: python review.py <指令> [参数...]\n")
+        print("可用指令:")
+        print("  add <标题> <状态>    - 添加新题目到复习计划中。")
+        print("                         状态可选值: star(重点/难点), mid(一般), ok(已掌握)")
+        print("                         示例: python review.py add \"二叉树遍历\" star\n")
+        print("  review               - 查看今天需要复习的所有题目。")
+        print("                         示例: python review.py review\n")
+        print("  update <标题> <状态> - 用于复习完毕后更新题目的掌握状态，并自动计算下一次复习时间。")
+        print("                         状态可选值: star, mid, ok")
+        print("                         示例: python review.py update \"二叉树遍历\" ok\n")
+        print("  list                 - 列出题库中的所有题目及其当前状态和下次复习时间。")
+        print("                         示例: python review.py list\n")
+        print("====================================================")
         sys.exit()
 
     cmd = sys.argv[1]
