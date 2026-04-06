@@ -66,15 +66,20 @@ def get_due_questions():
 
 
 def weighted_sample(questions, k=2):
-    pool = []
-    for q in questions:
-        weight = WEIGHTS.get(q["status"], 1)
-        pool.extend([q] * weight)
-
-    if len(pool) == 0:
+    if not questions:
         return []
-
-    return random.sample(pool, min(k, len(pool)))
+    
+    k = min(k, len(questions))
+    selected = []
+    candidates = list(questions)
+    
+    for _ in range(k):
+        weights = [WEIGHTS.get(q["status"], 1) for q in candidates]
+        chosen = random.choices(candidates, weights=weights, k=1)[0]
+        selected.append(chosen)
+        candidates.remove(chosen)
+        
+    return selected
 
 
 def review_today():
